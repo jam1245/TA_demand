@@ -16,133 +16,6 @@ shinyUI(
   navbarPage("Talent Ingenium", theme = shinytheme("flatly"), collapsible = TRUE,
 
       # id = "tab_being_displayed", # will set input$tab_being_displayed
-  tabPanel("Cycle Time Predictions",        
-    dashboardPage(
-        dashboardHeader(title = "Cycle Time Prediction App"),
-        dashboardSidebar(
-                    tags$style(type='text/css', ".selectize-input { padding: 3px; min-height: 0; font-size: 10px; line-height: 11px;} 
-
-                     .form-group, .shiny-input-container {padding: 3px; min-height: 0; font-size: 10px; line-height: 11px;}
-                     
-                     .irs-slider, single {font-size: 10px;}
-                     .selectize-dropdown {font-size: 10px; line-height: 10px; }
-                     .form-group, .selectize-control {margin-bottom:-1px;max-height: 90px !important;}
-                     .box-body {padding-bottom: 0px;}
-                     .form-control, shiny-bound-input {padding: 1px; min-height: 0; font-size: 10px; line-height: 11px; height: 25px;}
-                               "),
-                    
-            sidebarMenu(
-                menuItem("Cycle Time Influencers", tabName = "dashboard", icon = icon("dashboard"))
-                #menuItem("Widgets", tabName = "widgets", icon = icon("th"))
-            ),
-            
-            #start fluid row
-            fluidRow(#div(style="height: 27px;",
-                selectInput("city_simple", "Location:", sort(unique(df_cat$city_simple)), selected = "Washington"), 
-                selectInput("Clearance_ct", "Clearance:", sort(unique(df_cat$Clearance)), selected = "None")
-                #
-                
-            ),
-            
-            fluidRow(
-                selectInput("JOB_CLASS", "Job Class:", sort(unique(df_cat$JOB_CLASS)),selected = "Software Engineering")
-                
-            ),
-            
-            fluidRow(
-                selectInput("JOB_CATEGORY", "Job Category:",
-                            c("4 yr and up College" = "4 yr and up College",
-                              "Experienced Professional" = "Experienced Professional",
-                              "Co-op/Intern" = "Co-op/Intern", 
-                              "Hourly/Non-Exempt" = "Hourly/Non-Exempt"
-                            ))
-            ),
-            
-            fluidRow(
-                sliderInput("LEVEL", "Job Level:", 1, 7, 2)
-                
-            ),
-            
-            sidebarMenu(
-#                menuItem("Talent Acquisition Influencers", tabName = "dashboard", icon = icon("dashboard"))
-                #menuItem("Widgets", tabName = "widgets", icon = icon("th"))
-            ),
-            
-            fluidRow(
-                sliderInput("slider", "Open to Apply Time:", 1, 100, 20)
-            ), 
-            
-            
-            fluidRow(
-                sliderInput("slider2", "Screen to RFI Time:", 1, 60, 3)
-                
-            ), 
-            fluidRow(#box(
-                #title = "Apply to Review Time",
-                sliderInput("slider3", "Apply to Review Time:", 1, 40, 4)
-                #)
-            ), 
-            fluidRow(
-                sliderInput("slider4", "Extend to Accept Time:", 1, 30, 4)
-            ), 
-            fluidRow(
-                sliderInput("slider5", "Review to Screen Time:", 1, 30, 4)
-            )
-  #          absolutePanel(id = "logo", class = "card", bottom = 20, left = 60, width = 80, fixed=TRUE, draggable = FALSE, height = "auto",
-  #            tags$a(href='https://www.lockheedmartin.com/en-us/index.html', tags$img(src='lm-black.png',height='60',width='150')))
-        ),
-        dashboardBody(
-            
-            fluidRow(
-                
-                
-                # Dynamic valueBoxes
-                valueBoxOutput("vbox", width = 4), 
-                
-                valueBoxOutput("meanBox", width = 4 ),  
-                
-                valueBoxOutput("medianBox", width = 4 )
-                
-                # A static
-               # valueBox("60", "Cycle Time Median    ", icon = icon("chart-line"))
-            ),
-            
-            fluidRow(
-                
-                box(title = "Average Cycle Time TA Milestones in Days by Level", width = 6,
-                    withSpinner(plotlyOutput("heatmap", height = 300, width = 625))
-                ), 
-                box(title = "Cycle Time Ranges by Job Category",  width = 6,
-                    withSpinner(plotlyOutput("job_cat_plot", height = 300, width = 550))
-                ) 
-                #                box(width = 3,
-                #                    withSpinner(plotlyOutput("job_class_plot", height = 300, width = 325))
-                #                )
-            ),
-            
-            
-            
-         fluidRow(
-                
-                box(title = "Most Frequent Job Classifications Filled by Job Category", width = 6,
-                    withSpinner(plotOutput("freq_plot", height = 500, width = 625))
-                ),
-                box(title = "Cycle Time Distributions for the Top 10 Jobs",  width = 6,
-                    withSpinner(plotOutput("job_class_plot", height = 500, width = 625))
-                ) 
-                
-                
-            )
-            
-        )
-    )
-  ), # end first tab panel 
-
-
-
-
-
-
   tabPanel("Staffing Demand",
            tags$head(includeCSS("styles.css")),
            bootstrapPage(
@@ -215,68 +88,6 @@ shinyUI(
              ) ## bootstrap page 
            ), 
    ### Forecasting Applicataion Starts Here  
-  tabPanel("Forecasting LRP Hires",
-         tags$head(includeCSS("styles.css")),
-      #   bootstrapPage(
-           
-           
-            absolutePanel(#top = 75, right = 10,
-            
-             id = "controls", class = "panel panel-default",
-             #top = 75, left = 55, width = 300, 
-             top = 75, right = 10, width = 350, 
-             draggable = FALSE, height = 150, fixed=TRUE,
-             h3("Forecasting RMS LRP Hires ", align = "left"), 
-             selectizeInput("forecast_grp", "Select an Area of the Business:", 
-                         choices = sort(unique(forecast_grps$forecast_group)),
-                         selected = "RMS-Total", 
-                         #selectize = TRUE, 
-                         #options = list(maxItems = 1, placeholder = "RMS_Total")
-                         ), 
-             downloadLink("downloadData", "Download full data")
-             
-
-
-           ), 
-           
-           mainPanel( width = 10,
-                      fluidRow(
-                      column(6, plotlyOutput("forecast_plot", height = 500, width = 625)), 
-                      column(4,  h4("Forecast Summary ", align = "left"),
-                             
-                             tabsetPanel(
-                               id = "tabset_1", 
-                               type = "tabs",
-                               tabPanel(title = "Monthly Summary", p("Monthly Historicals vs. Forecast"), 
-                                        
-                                        div(
-                                          DT::dataTableOutput("mytable3"),style = "font-size: 75%; width: 75%")
-                               ),
-                               tabPanel(title = "Monthly Plot", p("2022 Forecast Only Plot with Upper and Lower Confidence Intervals"), 
-                                        plotlyOutput("lrp_plotly_range", height = 500, width = 700)), 
-                               
-                               tabPanel(title = "Annual Summary", p("Annual Totals Historical vs. Forecast"), 
-                                        
-                                        div(DT::dataTableOutput("forecast_summary_year"), style = "font-size: 75%; width: 50%")
-                               )
-                             )
-                             # old code 
-                             #div(DT::dataTableOutput("forecast_summary_year"), style = "font-size: 75%; width: 75%")
-                             )
-                      
-                      )
-           
-                      ), 
-           #DT::dataTableOutput("forecast_table")
-           div(DT::dataTableOutput("forecast_table"), style = "font-size: 75%; width: 100%")
-           
-           
-           
-         
-         
-  #)
-  ),
-
 
   tabPanel("About this site",
            tags$head(includeCSS("styles.css")),
@@ -299,20 +110,18 @@ shinyUI(
  #          tags$a(href="https://www.weblinkhere.com", "RMS Talent Acquistion"),tags$br(),
 #           tags$a(href="https://gisanddata.maps.arcgis.com/", "Additional Web Link Placeholder"),tags$br(),
            
-           tags$br(),tags$br(),tags$h4("Authors"),
-           "John Mataya, RMS HR / ITM Data Science",tags$br(),
-           "Chad Sunday, RMS HR / ITM Analytics",tags$br(),
+           tags$br(),tags$br(),tags$h4("Author"),
+           "John Mataya, Data Science",tags$br(),
            tags$br(),tags$br(),tags$h4("Contact"),
-           "john.a.mataya@lmco.com",tags$br(), 
-           "chad.a.sunday@lmco.com",tags$br(), 
-           
+           "johnmataya@gmail.com",tags$br(), 
+
            absolutePanel(id = "logo", class = "card", bottom = 20, left = 20, width = 80, fixed=TRUE, draggable = FALSE, height = "auto",
                        tags$a(href='https://www.lockheedmartin.com/en-us/index.html', tags$img(src='LM-logo.png',height='90',width='250')))
            
   ),
   
   
-  selected = "Cycle Time Predictions"
+  selected = "Staffing Demand"
   ) #end  navbarPage function 
 
   
