@@ -9,6 +9,17 @@ jobs <- c("Software Engineering", "Public Relations", "Finance", "Systems Engine
           "Manufacturing", "Systems Engineering: Requirements Development", "Chemical Engineering", "Systems Engineering: System of Systems Integration", 
           "Program Management", "Mechanical Engineering") 
 
+cities_us <- read_csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_us_cities.csv")
+
+
+city_simple <- cities_us %>%  
+  head(120) 
+
+lat <- city_simple$lat
+long <- city_simple$lon
+pop <- city_simple$pop
+
+
 cleartwo <- rep(clear, 120, length.out = 120)
 jobs_vector <- rep(jobs, 10)
 length(jobs_vector)
@@ -27,18 +38,14 @@ df1 <- data.frame(x=sample(seq(from=10,to=200,by=5),size=120,replace=TRUE)) %>%
   mutate(avg_cycletime = 40) %>%
   mutate(cycletime = dnorm(x, mean = 40, sd =10)) %>%
   # categorical values 
-  mutate(city_simple = city_vector %>% head(120))
+  mutate(city_simple = city_simple$name) %>%
+  mutate(lat = lat) %>%
+  mutate(long = long)%>%
+  mutate(pop = pop)
 
 df1 %>% glimpse()
 
-x <- c("Hello", "world!")
-
-c("Hanover", "Moorestown", "other", "Syracuse", "Manassas", "Owego", "Annapolis", "Mount Laurel", "San Diego", "Uniondale", "Bothell",
-  "Huntsville", "Washington", "Marion", "Fort Worth", "Camden", "Colorado Springs", "King of Prussia", "Eglin", "Littleton", "Clearwater", 
-  "Glendale", "Baltimore", "Stratford", "Shelton", "Dallas", "Milwaukee", "Patuxent River", "Trumbull", "Jupiter") 
-
-
-
+https://github.com/plotly/datasets/blob/master/us-cities-top-1k.csv
 
 
 
