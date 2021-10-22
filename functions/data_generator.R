@@ -1,5 +1,7 @@
 library(tidyverse)
 
+# https://github.com/plotly/datasets/blob/master/us-cities-top-1k.csv
+
 clear <- c("Top Secret", "Secret", "None", "TS/SCI", "TS/SCI w/Poly")
 citytwo <- c("Hanover", "Moorestown", "other", "Syracuse", "Manassas", "Owego", "Annapolis", "Mount Laurel", "San Diego", "Uniondale", "Bothell",
   "Huntsville", "Washington", "Marion", "Fort Worth", "Camden", "Colorado Springs", "King of Prussia", "Eglin", "Littleton", "Clearwater", 
@@ -87,3 +89,37 @@ data.frame(JOB_CATEGORY = input$JOB_category_staffing,
            offer_pending = input$offer_pending, 
            offer_to_accept = input$offer_to_accept,
            Clearance = input$Clearance_staffing)
+
+
+
+
+
+library(lubridate)
+
+start_date <- as.Date("1980/01/01") 
+
+seq(start_date, by = "day", )
+
+
+days <- seq(ymd("1904-1-1"), today(), by = "day")
+
+date_tbl <- tibble(day = days) %>% 
+  mutate(year = year(day)) %>%
+  mutate(month = month(day)) %>% 
+  mutate(month_name = months(day)) %>%
+  mutate(month_end_date = ceiling_date(day, "month") - days(1)) %>% 
+  mutate(quarter = quarter(day)) %>%
+  mutate(fiscal_yr_qtr = quarter(day, with_year = TRUE, fiscal_start = 8)) %>%
+  mutate(fiscal_qtr = quarter(day, with_year = FALSE, fiscal_start = 8)) %>%
+  mutate(semester_yr = semester(day, with_year = TRUE)) %>%
+  mutate(semester = semester(day, with_year = FALSE))
+  
+glimpse(day_tbl)
+
+
+
+
+
+
+
+
