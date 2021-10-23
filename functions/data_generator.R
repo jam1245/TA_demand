@@ -17,6 +17,8 @@ cities_us <- read_csv("https://raw.githubusercontent.com/plotly/datasets/master/
 city_simple <- cities_us %>%  
   head(120) 
 
+# additional data gen
+
 lat <- city_simple$lat
 long <- city_simple$lon
 pop <- city_simple$pop
