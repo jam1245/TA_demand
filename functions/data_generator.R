@@ -11,6 +11,9 @@ jobs <- c("Software Engineering", "Public Relations", "Finance", "Systems Engine
           "Manufacturing", "Systems Engineering: Requirements Development", "Chemical Engineering", "Systems Engineering: System of Systems Integration", 
           "Program Management", "Mechanical Engineering") 
 
+job_category <- c("Experienced Professional", "4 yr and up College", "Hourly or NonExempt")
+
+
 cities_us <- read_csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_us_cities.csv")
 
 
@@ -28,6 +31,8 @@ cleartwo <- rep(clear, 120, length.out = 120)
 jobs_vector <- rep(jobs, 10)
 length(jobs_vector)
 city_vector <- rep(citytwo, 10, length_out = 120)
+job_category_vec <- rep(job_category, 40, length_out = 120)
+job_category_vec %>% length()
 length(city_vector)
 samp=seq(from=20,to=200,by=5)
 
@@ -40,8 +45,9 @@ df <- data.frame(x=sample(seq(from=10,to=200,by=5),size=120,replace=TRUE)) %>%
   mutate(offer_to_accept = dnorm(x, mean = 15, sd =3)) %>%
   mutate(Clearance = cleartwo) %>%
   mutate(JOB_CLASS = jobs_vector) %>%
+  mutate(JOB_CATEGORY = job_category_vec) %>%
   mutate(cycletime = rnorm(120, mean = 40, sd = 10)) %>%
-  mutate(avg_cycletime = rnorm(120, mean = 45, sd = 8)) %>%
+  mutate(avg_cycletime = rnorm(120, mean = 45, sd = 16)) %>%
   mutate(median_cycletime.x = rnorm(120, mean = 35, sd = 4)) %>%
   # categorical values 
   mutate(city_simple = city_simple$name) %>%
@@ -56,28 +62,6 @@ df %>% summary()
 
 
 
-
-# 
-# 
-# rf_model_v2 <- ranger(cycletime ~ 
-#                         city_simple + 
-#                         JOB_CATEGORY + 
-#                         JOB_CLASS +
-#                         sourcing +
-#                         hiring_mngr_review+
-#                         interview+
-#                         offer_pending+
-#                         offer_to_accept+ 
-#                         Clearance +
-#                         LEVEL, # formula 
-#                      sd_df, # data
-#                    num.trees =500, 
-#                    respect.unordered.factors = "order", 
-#                    mtry = 2,
-#                    min.node.size = 3,
-#                    sample.fraction = .8,
-#                    importance = "impurity",
-#                    seed = 2135)
 
 
 

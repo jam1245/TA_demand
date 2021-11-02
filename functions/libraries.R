@@ -19,21 +19,21 @@ suppressMessages(library(DT))
 
 ## model 
 suppressMessages(library(ranger))
-library(modeltime)
+#library(modeltime)
 
 
 #tidyverse and other libraries
 suppressMessages(library(tidyverse))
 suppressMessages(library(plotly))
-suppressMessages(library(heatmaply))
+#suppressMessages(library(heatmaply))
 suppressMessages(library(ggthemes))
-suppressMessages(library(ggjoy))
+#suppressMessages(library(ggjoy))
 #suppressMessages(library(d3heatmap))
 suppressMessages(library(leaflet))
 suppressMessages(library(RColorBrewer))
 suppressMessages(library(lubridate))
-suppressMessages(library(janitor))
-suppressMessages(library(timetk))
+#suppressMessages(library(janitor))
+#suppressMessages(library(timetk))
 
 
 

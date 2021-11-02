@@ -14,20 +14,21 @@ suppressMessages(library(DT))
 #suppressMessages(library(shinyjs))
 #suppressMessages(library(shinyBS))
 
-## model 
+## model sh
 suppressMessages(library(ranger))
-library(modeltime)
+#library(modeltime)
 
 
 #tidyverse and other libraries
 suppressMessages(library(tidyverse))
 suppressMessages(library(plotly))
-suppressMessages(library(heatmaply))
-suppressMessages(library(ggthemes))
-suppressMessages(library(ggjoy))
+#suppressMessages(library(heatmaply))
+#suppressMessages(library(ggthemes))
+#suppressMessages(library(ggjoy))
 #suppressMessages(library(d3heatmap))
 suppressMessages(library(leaflet))
 suppressMessages(library(RColorBrewer))
 suppressMessages(library(lubridate))
-suppressMessages(library(janitor))
-suppressMessages(library(timetk))
+#suppressMessages(library(janitor))
+#suppressMessages(library(timetk))
+

@@ -1,10 +1,10 @@
 input[type="number"] {
-  max-width: 80%;
+  max-width: 90%;
 }
 
 div.outer {
   position: fixed;
-  top: 56px;
+  top: 26px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -15,9 +15,9 @@ div.outer {
 /* Customize fonts */
 body, label, input, button, select { 
   font-family: 'Helvetica Neue', Helvetica;
-  font-weight: 200;
+  font-weight: 50;
 }
-h1, h2, h3, h4 { font-weight: 400; }
+h1, h2, h3, h4 { font-weight: 50; }
 
 #controls {
   /* Appearance */

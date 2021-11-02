@@ -1,17 +1,17 @@
 
 
 # 1. PACKAGES -------------------------------------------------------------
-source("C:/Users/john_/OneDrive/Data_Science/ShinyApps/TA_demand/functions/library/library.R")
+source("C:/Users/john_/OneDrive/Data_Science/ShinyApps/TA_demand/functions/libraries.R")
 
 # 2. Data -------------------------------------------------------------
 source("C:/Users/john_/OneDrive/Data_Science/ShinyApps/TA_demand/functions/data_generator.R")
 
 # 3. Load Model -------------------------------------------------------------
-my_model <- readRDS("model/my_rf_model.RDS")
+#my_model <- readRDS("model/my_rf_model.RDS")
 
 
 # 3. Functions 
-source("/mnt/shiny_functions/shiny_functions.R")
+#source("/mnt/shiny_functions/shiny_functions.R")
 
 
 rf_model_v2 <- ranger(cycletime ~ 
@@ -25,7 +25,7 @@ rf_model_v2 <- ranger(cycletime ~
                         offer_to_accept+ 
                         Clearance +
                         LEVEL, # formula 
-                     sd_df, # data
+                     df, # data
                    num.trees =500, 
                    respect.unordered.factors = "order", 
                    mtry = 2,
@@ -76,7 +76,7 @@ shinyServer(function(input, output, session) {
         #     setView(39.02671271609735,-77.13495975135463, zoom = 10) %>% 
         fitBounds(-117, 24, -68.70975, 50.67552)  %>% 
         # fitBounds(~min(long), ~min(lat), ~max(long), ~max(lat)) %>% 
-        addCircles(radius = ~median_cycletime.x*800, weight = 1, color = "#fd903c",
+        addCircles(radius = ~median_cycletime.x*1800, weight = 1, color = "#fd903c",
                    stroke = TRUE, 
                   # fillColor = ~median_cycletime.x, 
                    fillColor = ~binpal(median_cycletime.x), #"#4a4d70",
@@ -100,7 +100,7 @@ shinyServer(function(input, output, session) {
       
       leafletProxy("map", data = data) %>%
         clearShapes() %>%
-        addCircles(radius = ~median_cycletime.x*800, weight = 1, color = "#fd903c",
+        addCircles(radius = ~median_cycletime.x*1800, weight = 1, color = "#fd903c",
                    fillColor = ~pal(median_cycletime.x), fillOpacity = 0.6, popup = paste("City:", data$city, "<br>",
                                                                                           "State:", data$state, "<br>",
                                                                                           "Median Days of Cycle Time:", round(data$median_cycletime.x, digits = 1), "<br>" )
@@ -141,7 +141,7 @@ shinyServer(function(input, output, session) {
       
       #addCircles(data = data[data$city_simple == input$city_name, ],
       addCircles(data = data,
-                 radius = ~median_cycletime.x*800, weight = 1, color = "#fd903c",
+                 radius = ~median_cycletime.x*1800, weight = 1, color = "#fd903c",
                  fillColor = ~pal(median_cycletime.x), fillOpacity = 0.6, popup = paste("City:", data$city, "<br>",
                                                                                         "State:", data$state, "<br>",
                                                                                         "Median Days of Cycle Time:", round(data$median_cycletime.x, digits = 1), "<br>" )
