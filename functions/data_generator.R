@@ -18,10 +18,10 @@ city_simple <- cities_us %>%
   head(120) 
 
 # additional data gen
-
-lat <- city_simple$lat
-long <- city_simple$lon
-pop <- city_simple$pop
+# 
+# lat <- city_simple$lat
+# long <- city_simple$lon
+# pop <- city_simple$pop
 
 
 cleartwo <- rep(clear, 120, length.out = 120)
@@ -29,8 +29,9 @@ jobs_vector <- rep(jobs, 10)
 length(jobs_vector)
 city_vector <- rep(citytwo, 10, length_out = 120)
 length(city_vector)
+samp=seq(from=20,to=200,by=5)
 
-df1 <- data.frame(x=sample(seq(from=10,to=200,by=5),size=120,replace=TRUE)) %>%
+df <- data.frame(x=sample(seq(from=10,to=200,by=5),size=120,replace=TRUE)) %>%
   mutate(LEVEL=sample(seq(from=1,to=8,by=1),size=120,replace=TRUE)) %>% 
   mutate(sourcing = rpois(120, 20)) %>%
   mutate(hiring_mngr_review = rpois(120, 4)) %>%
@@ -39,88 +40,44 @@ df1 <- data.frame(x=sample(seq(from=10,to=200,by=5),size=120,replace=TRUE)) %>%
   mutate(offer_to_accept = dnorm(x, mean = 15, sd =3)) %>%
   mutate(Clearance = cleartwo) %>%
   mutate(JOB_CLASS = jobs_vector) %>%
-  mutate(avg_cycletime = 40) %>%
-  mutate(cycletime = dnorm(x, mean = 40, sd =10)) %>%
+  mutate(cycletime = rnorm(120, mean = 40, sd = 10)) %>%
+  mutate(avg_cycletime = rnorm(120, mean = 45, sd = 8)) %>%
+  mutate(median_cycletime.x = rnorm(120, mean = 35, sd = 4)) %>%
   # categorical values 
   mutate(city_simple = city_simple$name) %>%
   mutate(lat = lat) %>%
   mutate(long = long)%>%
   mutate(pop = pop)
 
-df1 %>% glimpse()
+df %>% glimpse()
+df %>% summary()
 
-https://github.com/plotly/datasets/blob/master/us-cities-top-1k.csv
-
-
-
+#https://github.com/plotly/datasets/blob/master/us-cities-top-1k.csv
 
 
 
 
-
-city_simple
-Clearance
-JOB_CLASS
-avg_cycletime
-
-cycletime ~ 
-  city_simple + 
-  JOB_CATEGORY + 
-  JOB_CLASS +
-  sourcing +
-  hiring_mngr_review+
-  interview+
-  offer_pending+
-  offer_to_accept+ 
-  Clearance +
-  LEVEL,
-
-median_cycletime.x
-city
-state
-long
-lat
-
-data.frame(JOB_CATEGORY = input$JOB_category_staffing,
-           LEVEL = input$level_staffing,
-           JOB_CLASS = input$JOB_class_staffing,
-           city_simple=input$city_name, 
-           sourcing = input$sourcing, 
-           hiring_mngr_review = input$hiring_mngr_review, 
-           interview = input$interview,
-           offer_pending = input$offer_pending, 
-           offer_to_accept = input$offer_to_accept,
-           Clearance = input$Clearance_staffing)
-
-
-
-
-
-library(lubridate)
-
-start_date <- as.Date("1980/01/01") 
-
-seq(start_date, by = "day", )
-
-
-days <- seq(ymd("1904-1-1"), today(), by = "day")
-
-date_tbl <- tibble(day = days) %>% 
-  mutate(year = year(day)) %>%
-  mutate(month = month(day)) %>% 
-  mutate(month_name = months(day)) %>%
-  mutate(month_end_date = ceiling_date(day, "month") - days(1)) %>% 
-  mutate(quarter = quarter(day)) %>%
-  mutate(fiscal_yr_qtr = quarter(day, with_year = TRUE, fiscal_start = 8)) %>%
-  mutate(fiscal_qtr = quarter(day, with_year = FALSE, fiscal_start = 8)) %>%
-  mutate(semester_yr = semester(day, with_year = TRUE)) %>%
-  mutate(semester = semester(day, with_year = FALSE))
-  
-glimpse(day_tbl)
-
-
-
-
+# 
+# 
+# rf_model_v2 <- ranger(cycletime ~ 
+#                         city_simple + 
+#                         JOB_CATEGORY + 
+#                         JOB_CLASS +
+#                         sourcing +
+#                         hiring_mngr_review+
+#                         interview+
+#                         offer_pending+
+#                         offer_to_accept+ 
+#                         Clearance +
+#                         LEVEL, # formula 
+#                      sd_df, # data
+#                    num.trees =500, 
+#                    respect.unordered.factors = "order", 
+#                    mtry = 2,
+#                    min.node.size = 3,
+#                    sample.fraction = .8,
+#                    importance = "impurity",
+#                    seed = 2135)
 
 
 

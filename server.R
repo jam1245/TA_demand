@@ -1,10 +1,10 @@
 
 
 # 1. PACKAGES -------------------------------------------------------------
-source("library/library.R")
+source("C:/Users/john_/OneDrive/Data_Science/ShinyApps/TA_demand/functions/library/library.R")
 
 # 2. Data -------------------------------------------------------------
-source("data/tidy_data.R")
+source("C:/Users/john_/OneDrive/Data_Science/ShinyApps/TA_demand/functions/data_generator.R")
 
 # 3. Load Model -------------------------------------------------------------
 my_model <- readRDS("model/my_rf_model.RDS")
