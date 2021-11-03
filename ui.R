@@ -101,10 +101,7 @@ shinyUI(
            
 
 
-           
- #          tags$a(href="https://www.weblinkhere.com", "RMS Talent Acquistion"),tags$br(),
-#           tags$a(href="https://gisanddata.maps.arcgis.com/", "Additional Web Link Placeholder"),tags$br(),
-           
+
            tags$br(),tags$br(),tags$h4("Author"),
            "John Mataya, Data Science",tags$br(),
            tags$br(),tags$br(),tags$h4("Contact"),

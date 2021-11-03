@@ -159,20 +159,7 @@ shinyServer(function(input, output, session) {
     
     
     
-    
-    # leaflet Proxy - need to display the map in the navigation bar - second tab called staffing demand
- #     observe({
-#        req(input$tab_being_displayed == "Staffing Demand") # Only display if tab is 'Staffing Demand'
-#        leafletProxy("map", data = filteredData()) #%>%
-#          clearShapes() %>%
-#          addCircles(radius = ~median_cycletime.x, weight = 1, color = "#777777",
-#                     fillColor = ~median_cycletime.x, fillOpacity = 0.7, popup = ~paste(median_cycletime.x)
-#          )
-    
-#      })
-    
-
-
+  
     
     
     ###### staffing data 
