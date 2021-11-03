@@ -22,7 +22,7 @@ shinyUI(
                            id = "logo", class = "card", top = 85, right = 10, width = 280, fixed=TRUE, draggable = FALSE, height = "auto",
                            tags$a(href='https://www.lockheedmartin.com/en-us/index.html', tags$img(src='B-logo.png',height='60',width='170')),
                            sliderInput("range", "Median Days Cycle Time", round(min(df$avg_cycletime)), round(max(df$avg_cycletime), digits = 0),
-                                       value = range(df$avg_cycletime), step = 0.1
+                                       value = range(df$avg_cycletime), step = 5
                            ),tags$br(), 
                            selectInput("colors", "Color Scheme",
                                        rownames(subset(brewer.pal.info, category %in% c("seq", "div"))) , selected = "Blues"
