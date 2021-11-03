@@ -1,0 +1,13 @@
+name: TA_demand
+title: TA_demand
+username:
+account: jmataya
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 5030564
+bundleId: 5205192
+url: https://jmataya.shinyapps.io/TA_demand/
+when: 1635902744.11198
+lastSyncTime: 1635902744.11198
+asMultiple: FALSE
+asStatic: FALSE
