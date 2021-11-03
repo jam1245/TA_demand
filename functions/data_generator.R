@@ -13,7 +13,7 @@ jobs <- c("Software Engineering", "Public Relations", "Finance", "Systems Engine
 
 job_category <- c("Experienced Professional", "4 yr and up College", "Hourly or NonExempt")
 
-
+library(readr)
 cities_us <- read_csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_us_cities.csv")
 
 
@@ -22,9 +22,9 @@ city_simple <- cities_us %>%
 
 # additional data gen
 # 
-# lat <- city_simple$lat
-# long <- city_simple$lon
-# pop <- city_simple$pop
+lat <- city_simple$lat
+long <- city_simple$lon
+pop <- city_simple$pop
 
 
 cleartwo <- rep(clear, 120, length.out = 120)
