@@ -5,9 +5,9 @@ account: jmataya
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 5030564
-bundleId: 5205247
+bundleId: 5205285
 url: https://jmataya.shinyapps.io/TA_demand/
-when: 1635904136.40743
-lastSyncTime: 1635904136.40743
+when: 1635904913.76645
+lastSyncTime: 1635904913.76645
 asMultiple: FALSE
 asStatic: FALSE

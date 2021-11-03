@@ -18,9 +18,9 @@ shinyUI(
              
              
              leafletOutput("map", height = 845), 
-             absolutePanel(#top = 75, right = 10,
-                           id = "logo", class = "card", top = 75, right = 10, width = 280, fixed=TRUE, draggable = FALSE, height = "auto",
-                           tags$a(href='https://www.lockheedmartin.com/en-us/index.html', tags$img(src='LM-logo.png',height='60',width='170')),
+             absolutePanel(
+                           id = "logo", class = "card", top = 85, right = 10, width = 280, fixed=TRUE, draggable = FALSE, height = "auto",
+                           tags$a(href='https://www.lockheedmartin.com/en-us/index.html', tags$img(src='B-logo.png',height='60',width='170')),
                            sliderInput("range", "Median Days Cycle Time", round(min(df$avg_cycletime)), round(max(df$avg_cycletime), digits = 0),
                                        value = range(df$avg_cycletime), step = 0.1
                            ),tags$br(), 
@@ -111,7 +111,7 @@ shinyUI(
            "johnmataya@gmail.com",tags$br(), 
 
            absolutePanel(id = "logo", class = "card", bottom = 20, left = 20, width = 80, fixed=TRUE, draggable = FALSE, height = "auto",
-                       tags$a(href='https://www.lockheedmartin.com/en-us/index.html', tags$img(src='LM-logo.png',height='90',width='250')))
+                       tags$a(href='https://www.lockheedmartin.com/en-us/index.html', tags$img(src='B-logo.png',height='90',width='250')))
            
   ),
   
