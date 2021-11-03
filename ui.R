@@ -1,10 +1,9 @@
 
-
 # 1. PACKAGES -------------------------------------------------------------
-source("/TA_demand/functions/libraries.R")
+source("functions/libraries.R")
 
 # 2. Data -------------------------------------------------------------
-source("/TA_demand/functions/data_generator.R")
+source("functions/data_generator.R")
 
 
 
