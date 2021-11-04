@@ -22,7 +22,6 @@ suppressMessages(library(ranger))
 #tidyverse and other libraries
 suppressMessages(library(tidyverse))
 suppressMessages(library(plotly))
-#suppressMessages(library(heatmaply))
 #suppressMessages(library(ggthemes))
 #suppressMessages(library(ggjoy))
 #suppressMessages(library(d3heatmap))
