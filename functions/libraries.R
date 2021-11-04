@@ -37,3 +37,10 @@ suppressMessages(library(lubridate))
 
 
 
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(RJDBC)
+  library(RPresto)
+  library(janitor)
+  library(dbplyr)
+})
